@@ -28,5 +28,6 @@ unsupported_if_print(netdissect_options *ndo, const struct pcap_pkthdr *h,
 {
 	ndo->ndo_protocol = "unsupported";
 	nd_print_protocol_caps(ndo);
-	hex_and_ascii_print(ndo, "\n\t", p, h->caplen);
+	if (!ndo->ndo_suppress_default_print)
+		hex_and_ascii_print(ndo, "\n\t", p, h->caplen);
 }
